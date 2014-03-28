@@ -1,0 +1,14 @@
+.card {
+width: 850px;
+height: 350px;
+margin-left: auto;
+margin-right: auto;
+margin-top: 150px;
+left: auto;
+top: auto;
+background-color: lightgrey;
+}
+
+
+.jumbotron {border-radius:8px !important; }
+
