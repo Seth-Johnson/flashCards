@@ -1,11 +1,14 @@
 // arrays, arrays!
-var questions = [ "Question A", "Question B", ];
-var answers = [ "Answer A", "Answer B", ];
+var questions = [ "Question A", "Question B", "Question C", ];
+var answers = [ "Answer A", "Answer B", "Answer C", ];
 // hold the current and last card. We'll calculate next card on the fly
-var currentCard;
+var currentCard = 0;
 var previousCard;
+// we'll be doing a lot of sliding, let's make it easier
 hideCard = { "direction": "left", "mode": "hide" }; 
 showCard = { "direction": "right", "mode": "show"};
+// to keep track of whether we're showing a question or an answer
+var isQ = true;
 
 
 // start with the card hidden:  
@@ -23,29 +26,30 @@ $("#card").click(function() {
 });
 
 // next button click handler
+// for now just show cards randomly, later we'll offer an option for showing them in order
 $('#nextCard').click(function() {
     previousCard = currentCard;
     currentCard = getRandomCard();
     if ($('#card').is(':hidden')) {
-        $('#card').show();
+        $('#card').show().html('<h1>' + questions[0] + '</h1>');
         $('#placeHolder').remove();
 }
-     else {
-                     
-    $('.card').effect('slide', hideCard, 750).html('<h1>'+ questions[getRandomCard()] +'</h1>').effect('slide', showCard, 500);
+     else {                 
+    $('.card').effect('slide', hideCard, 750).html('<h1>'+ questions[currentCard] +'</h1>').effect('slide', showCard, 500);
+    isQ = true;
 }
 });
 
 
 // define previous button here
 
+// get the next card (randomly)
 var getRandomCard = function () {
     randomNum = Math.floor(Math.random() * questions.length);
     return randomNum;
 };
 
 // figure out if we're showing the question or the answer, then chnage it
-var isQ = true;
 var testQuestion = function() {
     if (isQ) {
         isQ = false;
