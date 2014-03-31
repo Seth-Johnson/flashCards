@@ -12,3 +12,11 @@ background-color: lightgrey;
 
 .jumbotron {border-radius:8px !important; }
 
+/*.fa { display: inline !important; } */
+
+.header { 
+    display: inline !important; 
+    font-weight: bold;
+
+
+}
