@@ -9,13 +9,16 @@ hideCard = { "direction": "left", "mode": "hide" };
 showCard = { "direction": "right", "mode": "show"};
 // to keep track of whether we're showing a question or an answer
 var isQ = true;
+// because typing document.getElementByClassName everytime isn't worth it
+var questionInputs = document.getElementsByClassName('inputQuestions');
+var answerInputs = document.getElementsByClassName('inputAnswers');
 
 
 // start with the card hidden:  
 $('#card').hide();
 
 
-// define next button here
+// define flipping here
 $("#card").click(function() {
   $("#card").flip({
       direction: 'tb',
@@ -24,6 +27,7 @@ $("#card").click(function() {
       content: testQuestion()
   });
 });
+// ugh; jquery, jquery everwhere.
 
 // next button click handler
 // for now just show cards randomly, later we'll offer an option for showing them in order
@@ -31,12 +35,14 @@ $('#nextCard').click(function() {
     previousCard = currentCard;
     currentCard = getRandomCard();
     if ($('#card').is(':hidden')) {
-        $('#card').show().html('<h1>' + questions[0] + '</h1>');
+        isQ = false;
+        $('#card').show().html(testQuestion());
         $('#placeHolder').remove();
 }
-     else {                 
-    $('.card').effect('slide', hideCard, 750).html('<h1>'+ questions[currentCard] +'</h1>').effect('slide', showCard, 500);
-    isQ = true;
+     else {
+    isQ = false;
+    $('.card').effect('slide', hideCard, 750).html(testQuestion()).effect('slide', showCard, 500);
+    
 }
 });
 
@@ -61,6 +67,12 @@ var testQuestion = function() {
     }
 };
 
+$('#saveCards').click(function() {
+        for (i=0; i<questionInputs.length; i++) {
+            alert('The value is' + questionInputs[i].value);
+}
+  
+  });
 
 
 
