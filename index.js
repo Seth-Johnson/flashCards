@@ -1,6 +1,6 @@
 // arrays, arrays!
-var questions = [ "Question A", "Question B", "Question C", ];
-var answers = [ "Answer A", "Answer B", "Answer C", ];
+var questions = [];
+var answers = [];
 // hold the current and last card. We'll calculate next card on the fly
 var currentCard = 0;
 var previousCard;
@@ -19,8 +19,8 @@ $('#card').hide();
 
 
 // define flipping here
-$("#card").click(function() {
-  $("#card").flip({
+$('#card').click(function() {
+  $('#card').flip({
       direction: 'tb',
       speed: 350,
       color: 'lightgrey',
@@ -35,11 +35,13 @@ $('#nextCard').click(function() {
     previousCard = currentCard;
     currentCard = getRandomCard();
     if ($('#card').is(':hidden')) {
+        // we want a question, so false
         isQ = false;
         $('#card').show().html(testQuestion());
         $('#placeHolder').remove();
 }
      else {
+    // false 'cause we want a question when it slides
     isQ = false;
     $('.card').effect('slide', hideCard, 750).html(testQuestion()).effect('slide', showCard, 500);
     
@@ -69,7 +71,27 @@ var testQuestion = function() {
 
 $('#saveCards').click(function() {
         for (i=0; i<questionInputs.length; i++) {
-            alert('The value is' + questionInputs[i].value);
+            if (questionInputs[i].value.length == 0) {
+                continue;
+            }
+            else {
+                alert('The value is ' + questionInputs[i].value);
+                questions.push(questionInputs[i].value);
+                if (answerInputs[i].value.length === 0) {
+                    if (document.contains(document.getElementById('warning'))) {
+                        continue;
+                    }
+                    else {
+                        $('#editCards').append('<div class="alert alert-warning alert-dismissable" id="warning"> <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button> <strong>Warning!</strong> One or more questions was defined but left without an answer</div>');
+                        answers.push('An answer wasn\'t given :( ')
+                    }
+                }
+                else {
+                    answers.push(answerInputs[i].value);
+                }
+                    
+            
+    }
 }
   
   });
