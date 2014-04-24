@@ -53,8 +53,10 @@ $('#nextCard').click(function () {
     }
 });
 
+// randomize the array created when we save the cards  
 
-// define previous button here
+
+
 
 // get the next card (randomly)
 var getRandomCard = function () {
