@@ -31,7 +31,21 @@ var getNextCard = function () {
     } else {
         temp = currentCard + 1;
     }
+<<<<<<< HEAD
     return temp;
+=======
+});
+
+// randomize the array created when we save the cards  
+
+
+
+
+// get the next card (randomly)
+var getRandomCard = function () {
+    randomNum = Math.floor(Math.random() * questions.length);
+    return randomNum;
+>>>>>>> a62e8949b75cb3389113cea9007df249c3147e85
 };
 
 // figure out if we're showing the question or the answer, then change it
@@ -164,3 +178,5 @@ $('#nextCard').click(function () {
 
     }
 });
+
+    
